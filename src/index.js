@@ -2,8 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './css/custom.scss';
+import './css/style.css';
+import './css/animate.css';
+import './css/flexslider.css';
 import App from './App';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import * as serviceWorker from './serviceWorker';
+
+library.add(fab,fas);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
