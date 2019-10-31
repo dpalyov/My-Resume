@@ -1,62 +1,46 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useInterceptionObserver from '../hooks/useInterceptionObserver';
 
-const Resume = props => {
+
+const Resume = ({exp}) => {
+
+	const [ref, entry] = useInterceptionObserver({
+		threshold: [0],
+	  });
+
+	const {isIntersecting, intersectionRatio} = entry;
 
     return (
         <div id="fh5co-resume" className="fh5co-bg-color">
-		<Container>
-			<Row className="animate-box">
+		<Container  >
+			<Row className="animate-box" >
 				<Col md={{span: 8, offset: 2}} className="text-center fh5co-heading">
 					<h2>My Resume</h2>
 				</Col>
 			</Row>
 			<Row>
 				<Col md={{span: 12, offset: 0}}>
-					<ul className="timeline">
+					<ul className="timeline"   ref={ref}  >
 						<li className="timeline-heading text-center animate-box">
 							<div><h3>Work Experience</h3></div>
 						</li>
-						<li className="animate-box timeline-unverted">
+						{exp.map((e,i) => <li key={i} className={`animate-box ${i % 2 !== 0 ? 'timeline-inverted': 'timeline-unverted '} ${isIntersecting ? 'fadeInUp animated-fast' : ''}`}>
 							<div className="timeline-badge"><i><FontAwesomeIcon  icon='suitcase'/></i></div>
 							<div className="timeline-panel">
 								<div className="timeline-heading">
-									<h3 className="timeline-title">Senior Developer</h3>
-									<span className="company">Company Name - 2016 - Current</span>
+									<h3 className="timeline-title">{e.role}</h3>
+									<span className="company">{e.name} - {e.startDate} - {e.endDate||'Current'}</span>
 								</div>
 								<div className="timeline-body">
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+									<p>{e.content}</p>
 								</div>
 							</div>
 						</li>
-						<li className="timeline-inverted animate-box">
-							<div className="timeline-badge"><i><FontAwesomeIcon  icon='suitcase'/></i></div>
-							<div className="timeline-panel">
-								<div className="timeline-heading">
-									<h3 className="timeline-title">Junior Developer</h3>
-									<span className="company">Company Name - 2013 - 2015</span>
-								</div>
-								<div className="timeline-body">
-									<p>Far far away, behind the word mountains, they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</li>
-						<li className="animate-box timeline-unverted">
-							<div className="timeline-badge"><i><FontAwesomeIcon  icon='suitcase'/></i></div>
-							<div className="timeline-panel">
-								<div className="timeline-heading">
-									<h3 className="timeline-title">UI/UX Designer</h3>
-									<span className="company">Company Name - 2010 - 2012</span>
-								</div>
-								<div className="timeline-body">
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-								</div>
-							</div>
-						</li>
-
+						)}
 						<br/>
-						<li className="timeline-heading text-center animate-box">
+						<li ref={ref} className="timeline-heading text-center animate-box">
 							<div><h3>Education</h3></div>
 						</li>
 						<li className="timeline-inverted animate-box">
@@ -113,6 +97,6 @@ const Resume = props => {
 		</Container>
 	</div>
     )
-}
+};
 
 export default Resume;
