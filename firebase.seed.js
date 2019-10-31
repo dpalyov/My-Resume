@@ -1,15 +1,7 @@
 const firebase = require("firebase/app");
 require("firebase/firestore");
 
-const firebaseConfig = {
-    apiKey: "AIzaSyA19hix9Yy-xKx0uo4TTlIjL1zBP1X2jvU",
-    authDomain: "online-cv-476e2.firebaseapp.com",
-    databaseURL: "https://online-cv-476e2.firebaseio.com",
-    projectId: "online-cv-476e2",
-    storageBucket: "online-cv-476e2.appspot.com",
-    messagingSenderId: "15254916845",
-    appId: "1:15254916845:web:4dac19783efb1df7"
-  };
+var firebaseConfig = {}
 
  firebase.initializeApp(firebaseConfig);
  const db = firebase.firestore();
