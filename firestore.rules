@@ -5,7 +5,7 @@ service cloud.firestore {
     function signedIn() {
       return request.auth.uid == "palyov.dimitar@gmail.com" ;
     }
-      allow write;
+      allow write; //if(signedIn());  
     }
     match /{document=**} {
       allow read;

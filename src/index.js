@@ -5,6 +5,7 @@ import './css/custom.scss';
 import './css/style.css';
 import './css/animate.css';
 import './css/flexslider.css';
+import './css/avatar.scss';
 import App from './App';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'

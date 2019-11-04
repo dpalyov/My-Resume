@@ -17,7 +17,7 @@ const Footer = props => {
                 </Container>
             </div>
             <div className="gototop js-top">
-                <a href="#" className="js-gotop"><i><FontAwesomeIcon icon="arrow-up" /></i></a>
+                <a href="/" className="js-gotop"><i><FontAwesomeIcon icon="arrow-up" /></i></a>
             </div>
         </Fragment>
     )

@@ -1,0 +1,253 @@
+$background-avatar: black;
+$hairColor: #6b514c;
+$container: #5ab3b5; //#00ced1;
+$shirt: #fcf352;
+$skin: #ffdada;
+$blouse: #ff2e00;
+$width: 200px;
+$height: 200px;
+
+
+.avatar-container {
+  background: $container;
+  overflow: hidden;
+  width: $width;
+  height: $height;
+  border-radius: 100%;
+  transition: all 0.5s ease;
+  z-index:1;
+  border: 2px solid  white;
+ 
+}
+
+.bg-mountains {
+   position:absolute;
+   height: $width * 0.5;
+   width: $height;
+   background-color: green;
+   left: 0px;
+   top: 5px;
+  border-radius:150px 100px 0px 80px;
+  z-index:0;
+
+}
+
+  .sm-mountains {
+    position: relative;
+    background-color: darken(green, 10%);
+    top: 55%;
+    left: 0;
+    width: $width * 0.33;
+    height: $height / 6;
+    border-radius: 100% 65% 0px 20px;
+    z-index:0;
+  }
+
+.sun {
+  position: absolute;
+  background-color: yellow;
+  height: $height * 0.25;
+  width: $height * 0.25;
+  border-radius:100%;
+  right: 60%;
+  top: 0%;
+}
+
+.avatar-body {
+  width: $width * 0.17;
+  height: $height * 0.15;
+  background: $shirt;
+  position: absolute;
+  left: 43%;
+  top: 72%;
+  z-index:3;
+  &:after {
+    content: "";
+    position: absolute;
+    border-bottom: 20px solid darken($blouse, 10%);
+    border-left: 20x solid transparent;
+    border-right: 15px solid transparent;
+    height: 0;
+    width: $width * 0.12;
+    right: 30%;
+    top: 0%;
+    z-index:3;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    border-bottom: 20px solid darken($blouse, 20%);
+    border-left: 15px solid transparent;
+    border-right: 0px solid transparent;
+    height: 0;
+    width: $width * 0.12;
+    left: 30%;
+    top: 0%;
+    z-index:3;
+  }
+}
+
+.avatar-hoody {
+  position:absolute;
+  height: $width * 0.30;
+  width: $height * 0.30;
+  border-radius: 100%;
+  left: 36%;
+  top: 55%;
+  background-color: darken(#fcf352, 20%);
+  z-index:1;
+}
+
+.avatar-head {
+  position: absolute;
+  z-index: 3;
+  width: $width * 0.3;
+  height: $height * 0.4;
+  background: $skin;
+  border-radius: 40px;
+  left: 36%;
+  top: 25%;
+}
+.avatar-neck {
+  position: absolute;
+  width: $width * 0.13;
+  height: $height * 0.17;
+  background: $skin;
+  left: 45%;
+  top: 60%;
+  box-shadow: inset 0px 16px 0px 0px darken($skin, 10%);
+  z-index:2;
+}
+.avatar-hair {
+  position: absolute;
+  width: $width * 0.37;
+  height: $height * 0.33;
+  background: $hairColor;
+  border-radius: 100%;
+  left: 32%;
+  top: 20%;
+  box-shadow: inset 10px -1px lighten($hairColor, 10%);
+  &::after {
+    content: "";
+    position: absolute;
+    width: $width * 0.18;
+    height: $height * 0.17;
+    background: $hairColor;
+    border-radius: 20px 80px 20px 80px;
+    z-index: 4;
+    left: 32%;
+    top: 5%;
+    transform: rotate(-30deg);
+  }
+}
+
+.avatar-face {
+  width: $width * 0.66;
+  height: $height * 0.66;
+  position: absolute;
+  left: 18%;
+  top: 40%;
+  z-index: 5;
+  .eyes {
+    &::before,
+    &::after {
+      display: inline-block;
+      content: "";
+      width: $width * 0.05;
+      height: $height * 0.13;
+      background: #00d6df;
+      margin: 0 5px;
+      border-radius: 200px;
+      animation: blink 3s ease-in-out infinite;
+    }
+ 
+  }
+    .smile {
+      position:absolute;
+      width: 15px;
+      height: 3px;
+      background-color: black;
+      left: 44%;
+      top: 30%;
+      z-index: 5;
+      border-radius: 100%;
+      
+    }
+  
+  .smile:hover {
+    animation-name: smile;
+    animation-duration: 0.1s;
+    animation-timing-function: ease-in-out;
+    
+  }
+}
+
+.avatar-beard {
+  position: absolute;
+  width: $width * 0.24;
+  height: $height * 0.15;
+  background-color: $hairColor;
+  left: 39%;
+  top: 55%;
+  z-index:5;
+  border-radius: 20px 20px 60px 60px;
+  &::before {
+    position: absolute;
+    content: "";
+    width: $width * 0.2;
+    height: $height * 0.07;
+    background-color: $hairColor;
+    left: 52%;
+    top: 0;
+      border-radius: 10px 10px 30px 30px;
+    transform: rotate(-60deg);
+
+  }
+  &::after{
+     position: absolute;
+    content: "";
+    width: $width * 0.2;
+    height: $height * 0.07;
+    background-color: $hairColor;
+    right: 52%;
+    top: 0;
+      border-radius: 10px 10px 30px 30px;
+    transform: rotate(60deg);
+  }
+}
+
+@keyframes blink {
+  0% {
+    transform: scaleY(1);
+  }
+  18% {
+    transform: scaleY(1);
+  }
+  20% {
+    transform: scaleY(0);
+  }
+  25% {
+    transform: scaleY(1);
+  }
+  38% {
+    transform: scaleY(1);
+  }
+  40% {
+    transform: scaleY(0);
+  }
+  45% {
+    transform: scaleY(1);
+  }
+  80% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes smile {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}

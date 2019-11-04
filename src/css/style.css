@@ -211,6 +211,7 @@ h1, h2, h3, h4, h5, h6, figure {
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   border-radius: 50%;
+  border: 2px solid white;
 }
 #fh5co-header .display-tc .fh5co-social-icons li a,
 .fh5co-cover .display-tc .fh5co-social-icons li a {
@@ -343,7 +344,6 @@ h1, h2, h3, h4, h5, h6, figure {
 .info li .first-block {
   width: 40%;
   display: inline-block;
-  float: left;
   color: #000;
   font-weight: bold;
 }
@@ -376,6 +376,11 @@ h1, h2, h3, h4, h5, h6, figure {
   padding-right: 10px;
   margin: 4px;
 }
+
+.fh5co-social-icons li a:hover {
+  color: #2F3C4F !important;
+}
+
 .fh5co-social-icons li a i {
   font-size: 20px;
 }
@@ -696,18 +701,9 @@ h1, h2, h3, h4, h5, h6, figure {
   height: 160px;
   margin: 0 auto 40px auto;
   position: relative;
-  text-align: center;
+  
 }
-.chart span {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  margin-top: -30px;
-  width: 100%;
-}
-.chart span strong {
-  display: block;
-}
+
 .chart canvas {
   position: absolute;
   left: 0;
@@ -724,6 +720,11 @@ h1, h2, h3, h4, h5, h6, figure {
   display: table;
   overflow: hidden;
 }
+
+.work span:nth-last-child(1){
+  color: black !important;
+}
+
 @media screen and (max-width: 768px) {
   .work {
     height: 400px;
@@ -1299,4 +1300,16 @@ input[type="text"] {
   opacity: 0;
 }
 
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.avatar-wrapper {
+  position: relative;
+  transform: translate(-50%,0);
+  width: 30%;
+  height: 25%;
+  left: 50%;
+}
 /*# sourceMappingURL=style.css.map */
