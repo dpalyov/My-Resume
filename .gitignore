@@ -25,5 +25,5 @@ yarn-error.log*
 
 firestore*
 *rules*
-serviceAccountKey.json
+.vscode/**
 
