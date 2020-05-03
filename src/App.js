@@ -40,19 +40,19 @@ function App() {
     const defaultOpts = { "Content-Type": "application/json" };
 
     const [education,errEducation] = useFirebase(
-        `${baseUri}/api/firestore/data/education?sortField=id&sortOrder=asc`,
+        `${baseUri}/api/firebase/data/education?sortField=id&sortOrder=asc`,
         defaultOpts
     );
     const [experience,errExp] = useFirebase(
-        `${baseUri}/api/firestore/data/experience?sortField=id&sortOrder=asc`,
+        `${baseUri}/api/firebase/data/experience?sortField=id&sortOrder=asc`,
         defaultOpts
     );
     const [skills,errSkills] = useFirebase(
-        `${baseUri}/api/firestore/data/skills?sortField=id&sortOrder=asc`,
+        `${baseUri}/api/firebase/data/skills?sortField=id&sortOrder=asc`,
         defaultOpts
     );
     const [services,errServices] = useFirebase(
-        `${baseUri}/api/firestore/data/services?sortField=id&sortOrder=asc`,
+        `${baseUri}/api/firebase/data/services?sortField=id&sortOrder=asc`,
         defaultOpts
     );
     const [repositories, errRepos] = useFirebase(`${baseUri}/api/githubRepos?username=dpalyov&numRepos=4`,defaultOpts);

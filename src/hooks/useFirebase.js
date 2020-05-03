@@ -19,15 +19,10 @@ export default (initialUri = "", initialOpts = {}) => {
             }
 
             const docs = await res.json();
-            let tempArr = [];
-            docs.forEach(d => {
-                const rec = d.data();
-                tempArr.push(rec);
-            });
-            setData(tempArr);
+            setData(docs);
         }
        
-        if(!didCancel){
+        if(!didCancel && initialUri !== ""){
             getData();
         }
 

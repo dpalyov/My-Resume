@@ -31,7 +31,7 @@ const Contact = () => {
 
         console.log(formData);
         try {
-           const response =  await fetch("https://us-central1-online-cv-476e2.cloudfunctions.net/app/handleEmail",
+           const response =  await fetch("https://us-central1-online-cv-476e2.cloudfunctions.net/api/handleEmail",
                 {
                     method: "POST",
                     body: JSON.stringify(formData),
