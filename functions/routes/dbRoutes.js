@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const serviceKey = require("../online-cv-476e2-a7ecd5e080c9.json");
+const serviceKey = require("../serviceKey.json");
 const admin = require("firebase-admin");
 
 const adminConfig = JSON.parse(process.env.FIREBASE_CONFIG);

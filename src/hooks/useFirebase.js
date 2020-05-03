@@ -1,9 +1,11 @@
 import  {useState, useEffect} from 'react';
 
-export default (uri, opts = {}) => {
+export default (initialUri = "", initialOpts = {}) => {
 
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
+    const [uri, setUri] = useState(initialUri);
+    const [opts, setOpts] = useState(initialOpts);
 
     useEffect(() => {
 
