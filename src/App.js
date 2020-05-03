@@ -1,107 +1,94 @@
-import React, {useEffect, useState} from 'react';
-import Header from './components/Header';
-import About from './components/About';
-import Resume from './components/Resume';
-import Services from './components/Services';
-import Skills from './components/Skills';
-import loader from './assets/images/loader.gif';
-import Portfolio from './components/Portfolio';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import {expCollection, educationCollection, skillsCollection, servicesCollection, emailCollection} from './firebase.init';
-import useFirebase from './hooks/useFirebase';
+import React, { useEffect, useState } from "react";
+import Header from "./components/Header";
+import About from "./components/About";
+import Resume from "./components/Resume";
+import Services from "./components/Services";
+import Skills from "./components/Skills";
+import loader from "./assets/images/loader.gif";
+import Portfolio from "./components/Portfolio";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import useFirebase from "./hooks/useFirebase";
 
-const endpoint = 'https://api.github.com/graphql';
-const token = process.env.REACT_APP_GITHUB_TOKEN;
-const query = `query ($numRepos: Int!, $query:String!) {
-   
-  search(type:REPOSITORY,query: $query, last: $numRepos) {
-      nodes {
-        ... on Repository {
-            languages(first:5) {
-             ...on LanguageConnection {
-                   nodes {
-                  name
-                }
-            }
-          }
-          name
-          url
-          shortDescriptionHTML
-          isArchived
-        }
-      }
-    }
-  }
-`
+// const endpoint = 'https://api.github.com/graphql';
+// const token = process.env.REACT_APP_GITHUB_TOKEN;
+// const query = `query ($numRepos: Int!, $query:String!) {
+
+//   search(type:REPOSITORY,query: $query, last: $numRepos) {
+//       nodes {
+//         ... on Repository {
+//             languages(first:5) {
+//              ...on LanguageConnection {
+//                    nodes {
+//                   name
+//                 }
+//             }
+//           }
+//           name
+//           url
+//           shortDescriptionHTML
+//           isArchived
+//         }
+//       }
+//     }
+//   }
+// `
+
+const baseUri = 'https://us-central1-online-cv-476e2.cloudfunctions.net';
 
 function App() {
+    const defaultOpts = { "Content-Type": "application/json" };
 
-  const education = useFirebase(educationCollection, {sortField: 'id', sortOrder: 'asc'});
-  const experience = useFirebase(expCollection, {sortField : 'id', sortOrder : 'asc'});
-  const skills = useFirebase(skillsCollection, {sortField: 'id', sortOrder: 'asc'})
-  const services = useFirebase(servicesCollection);
-  const [repositorires, setRepositories] = useState([]);
-  const [loading, setLoading] = useState(true);
+    const [education,errEducation] = useFirebase(
+        `${baseUri}/api/firestore/data/education?sortField=id&sortOrder=asc`,
+        defaultOpts
+    );
+    const [experience,errExp] = useFirebase(
+        `${baseUri}/api/firestore/data/experience?sortField=id&sortOrder=asc`,
+        defaultOpts
+    );
+    const [skills,errSkills] = useFirebase(
+        `${baseUri}/api/firestore/data/skills?sortField=id&sortOrder=asc`,
+        defaultOpts
+    );
+    const [services,errServices] = useFirebase(
+        `${baseUri}/api/firestore/data/services?sortField=id&sortOrder=asc`,
+        defaultOpts
+    );
+    const [repositories, errRepos] = useFirebase(`${baseUri}/api/githubRepos?username=dpalyov&numRepos=4`,defaultOpts);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 1000);
+    }, []);
 
-    let ac = new AbortController();
+    if (loading)
+        return (
+            <div
+                className="fh5co-loader fadeOut"
+                style={{ background: `url(${loader}) center no-repeat #fff` }}
+            ></div>
+        );
 
-    const getRepos = async () => 
-    {
-        try{
-          const res = await fetch(endpoint, 
-              {
-                  method: 'POST',
-                  credentials: 'same-origin', 
-                  body: JSON.stringify({
-                      query: query, 
-                      variables: {username: 'dpalyov', numRepos: 4,query: "user:dpalyov is:public archived:false"}
-                  }),
-                  headers: {
-                      'Content-type' : 'application/json',
-                      'Authorization': 'Bearer ' + token
-                  }
-              })
-    
-            const json = await res.json();
-            setRepositories(json.data.search.nodes);
-        }
-        catch(error){
-            //TODO: Notification
-        }
-      }
+    if(errEducation || errExp || errRepos || errSkills || errServices){
+      return <div>Ooops something went wrong!</div>
+    }
 
-      getRepos();
- 
 
-      return () => {
-        ac.abort();
-      }
-      
-  },[]);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false),1000); 
-  },[])
-
-  if(loading) return <div className="fh5co-loader fadeOut" style={{background: `url(${loader}) center no-repeat #fff`}}></div>
-
-  return (
-    <div className="App">
-	    <div id="page">
-        <Header pageLoaded={loading} />
-        <About />
-        <Resume exp={experience} education={education} />
-        <Services data={services}/>
-        <Skills data={skills}/>
-        <Portfolio data={repositorires}/>
-        <Contact emailCollection={emailCollection}/>
-        <Footer />
-      </div>
-    </div>
-  );
+    return (
+        <div className="App">
+            <div id="page">
+                <Header pageLoaded={loading} />
+                <About />
+                <Resume exp={experience} education={education} />
+                <Services data={services} />
+                <Skills data={skills} />
+                <Portfolio data={repositories} />
+                <Contact  />
+                <Footer />
+            </div>
+        </div>
+    );
 }
 
 export default App;

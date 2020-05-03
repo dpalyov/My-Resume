@@ -4,7 +4,14 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach",
+            "port": 9229,
+            "restart": true,
+            "skipFiles": ["<node_internals>/**"]
+          },
         {
             "type": "chrome",
             "request": "launch",
@@ -12,12 +19,6 @@
             "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}"
         },
-        {
-            "type": "node",
-            "request": "attach",
-            "name": "Attach",
-            "port": 6000
-          }
-   
+    
     ]
 }

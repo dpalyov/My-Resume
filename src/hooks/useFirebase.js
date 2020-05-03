@@ -1,18 +1,22 @@
 import  {useState, useEffect} from 'react';
 
-export default (collection = [], opts = {sortField :'id', sortOrder :'asc'}) => {
+export default (uri, opts = {}) => {
 
     const [data, setData] = useState([]);
-
-    const {sortField, sortOrder} = opts;
+    const [error, setError] = useState(null);
 
     useEffect(() => {
 
         let didCancel = false;
         const getData = async () => {
             
-            const snapshot = await collection.orderBy(sortField, sortOrder).get();
-            const docs = snapshot.docs;
+            const res = await fetch(uri, opts);
+
+            if(!res.ok){
+                setError({status: res.status, text: res.statusText});
+            }
+
+            const docs = await res.json();
             let tempArr = [];
             docs.forEach(d => {
                 const rec = d.data();
@@ -26,8 +30,8 @@ export default (collection = [], opts = {sortField :'id', sortOrder :'asc'}) => 
         }
 
         return () => didCancel = true;
-    },[collection, sortField, sortOrder])
+    },[uri, opts])
 
-    return data;
+    return [data,error];
 
 }

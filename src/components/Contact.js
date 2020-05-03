@@ -3,7 +3,7 @@ import { FormControl, Form, Button, FormGroup, Row, Col } from 'react-bootstrap'
 import cover from '../assets/images/contact-cover_alt.jpg';
 import useInterceptionObserver from '../hooks/useInterceptionObserver';
 
-const Contact = ({ emailCollection }) => {
+const Contact = () => {
 
     const [formData, setFormData] = useState({
         fname: "",

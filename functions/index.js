@@ -1,20 +1,20 @@
 const functions = require("firebase-functions");
-const admin = require("firebase-admin");
 const nodemailer = require("nodemailer");
 const fetch = require("node-fetch");
 const cors = require("cors");
 const express = require("express");
 const errorHandler = require("./middlewares/errorHandler");
+const firebaseRouter = require('./routes/dbRoutes');
 
-admin.initializeApp();
 
 const app = express();
-app.use(cors({ origin: ["http://localhost:3000"] }));
-
+app.use(cors({ origin: true}));
 app.use(errorHandler);
-//routes
+
+app.use('/firebase', firebaseRouter )
+
 app.get("/hello", (req, res) => {
-    res.send(`Hello ${req.user.name}`);
+    res.status(400).send("Data")
 });
 
 app.post("/handleEmail", (req, res) => {
@@ -68,7 +68,7 @@ app.get("/githubRepos", async (request, response) => {
 
     const json = await res.json();
 
-    response.json(json);
+    response.status(200).json(json.data.search.nodes);
 });
 
 const sendMail = (subject, sender, mail, fname, lname) => {
@@ -103,15 +103,6 @@ const sendMail = (subject, sender, mail, fname, lname) => {
     });
 };
 
-// exports.getGithubRepos = functions.https.onRequest(
-
-// exports.handleEmail = functions.https.onRequest((req, res) => {
-//     // corsHandler(req, res, async () => {
-//     const { subject, sender, mail, fname, lname } = req.body;
-//     var result = sendMail(subject, sender, mail, fname, lname);
-//     res.send(JSON.stringify(req.body));
-//     // console.log(req.body);
-// });
 
 // exports.onDataAdded = functions.firestore
 //     .document("emails/{sessionId}")
