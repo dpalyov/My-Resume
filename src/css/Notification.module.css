@@ -1,0 +1,59 @@
+.container {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 250px;
+    height: auto;
+    opacity: 0;
+    background-color: #348583;
+    border-radius: 2px;
+    padding: 10px;
+    color: white;
+    font-size: 1rem;
+    word-wrap: none;
+    box-shadow: 5px 5px 10px rgb(0,0,0, .7);
+
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+    animation-duration: .5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.fadeOut {
+    animation-name: fadeOut;
+    animation-duration: .5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.image {
+    height: 100px;
+    width: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+}

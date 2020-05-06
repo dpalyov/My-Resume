@@ -57,7 +57,7 @@ app.get("/githubRepos", async (request, response) => {
             variables: {
                 username: username,
                 numRepos: parseInt(numRepos),
-                query: `user:${username} is:public archived:false`,
+                query: `user:${username} is:public archived:false (:r:) in:description`,
             },
         }),
         headers: {

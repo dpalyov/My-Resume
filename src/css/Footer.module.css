@@ -1,0 +1,27 @@
+.footer {
+    padding: 50px 0;
+    float: left;
+    width: 100%;
+    background-color: #394a6d;
+    color: white;
+  }
+.footer p:last-child {
+    margin-bottom: 0;
+  }
+
+  .shortcuts div{
+    background-color: transparent;
+    padding: 5px;
+    border: 0;
+  }
+
+  .shortcuts div:hover a {
+    color: white;
+  }
+
+  .footerImg {
+      height: 300px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+  }

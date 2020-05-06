@@ -3,8 +3,9 @@ import {Container, Row, Col} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faLinkedinIn, faTwitter, faFacebook, faGithub} from '@fortawesome/free-brands-svg-icons';
 import useInterceptionObserver from '../hooks/useInterceptionObserver';
+import typeWritterImg from '../assets/images/typewritter.svg';
 
-const About = props => {
+const About = () => {
 
 	const [ref, entry] = useInterceptionObserver({
 		threshold: [0.1],
@@ -17,17 +18,24 @@ const About = props => {
     return (
         <div id="fh5co-about" ref={ref} className={aboutClasses}>
 		<Container>
-			<Row>
+			<Row style={{position: 'relative'}}>
 				<Col md={{span:8, offset:2}} className="text-center fh5co-heading">
 					<h2>About Me</h2>
 				</Col>
+				<div className="about-underlay" style={
+					{
+						backgroundImage: `url(${typeWritterImg})`,
+					}
+				}>
+					&nbsp;
+				</div>
 			</Row>
 			<Row>
 				<Col md='4'>
 					<ul className="info">
 						<li><span className="first-block">Full Name:</span><span className="second-block">Dimitar Palyov</span></li>
 						<li><span className="first-block">Phone:</span><span className="second-block">+359 897 86 40 34</span></li>
-						<li><span className="first-block">Email:</span><span className="second-block">palyov.dimitar@gmail.com</span></li>
+						<li><span className="first-block">Email:</span><span className="second-block">click <a href="#fh5co-consult">here</a></span></li>
 						<li><span className="first-block">Location:</span><span className="second-block">Sofia, Bulgaria</span></li>
 					</ul>
 				</Col>

@@ -4,12 +4,10 @@ import cover from '../assets/images/gif-cover.gif';
 import thumb from '../assets/images/thumb.jpg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faLinkedinIn, faTwitter, faFacebook, faGithub} from '@fortawesome/free-brands-svg-icons'
-import Avatar from './Avatar';
 
 const Header = ({pageLoaded}) => {
 
 	const headerClasses = pageLoaded ? 'display-tc  animate-box' : 'display-tc animate-box fadeIn animated-fast';
-	const [isHovered, setIsHovered] = useState(false);
 
 
 	var isMobile = {
@@ -57,9 +55,10 @@ const Header = ({pageLoaded}) => {
 				<Col  md={{span: 8, offset: 2}} className="text-center">
 					<div className="display-t ">
 						<div  className={headerClasses} data-animate-effect="fadeIn">
-							<div  onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className="avatar-wrapper">
-								{isHovered ? <Avatar/> : <div className="profile-thumb" style={{background: `url(${thumb})`}}></div>}
-							</div>
+							{/* <div  onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className="avatar-wrapper">
+								{isHovered ? <Avatar/> : }
+							</div> */}
+							<div className="profile-thumb" style={{background: `url(${thumb})`}}></div>
 							<h1><span>Dimitar Palyov</span></h1>
 							<h3><span>Web Developer/Data enthusiast</span></h3>
 								<ul className="fh5co-social-icons">

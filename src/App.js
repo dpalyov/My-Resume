@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Header from "./components/Header";
 import About from "./components/About";
 import Resume from "./components/Resume";
@@ -8,35 +8,18 @@ import loader from "./assets/images/loader.gif";
 import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import useFirebase from "./hooks/useFirebase";
+import useFirebase from "./hooks/useApi";
+import Notification from "./components/Notification";
+import { store } from "./store";
 
-// const endpoint = 'https://api.github.com/graphql';
-// const token = process.env.REACT_APP_GITHUB_TOKEN;
-// const query = `query ($numRepos: Int!, $query:String!) {
-
-//   search(type:REPOSITORY,query: $query, last: $numRepos) {
-//       nodes {
-//         ... on Repository {
-//             languages(first:5) {
-//              ...on LanguageConnection {
-//                    nodes {
-//                   name
-//                 }
-//             }
-//           }
-//           name
-//           url
-//           shortDescriptionHTML
-//           isArchived
-//         }
-//       }
-//     }
-//   }
-// `
 
 const baseUri = 'https://us-central1-online-cv-476e2.cloudfunctions.net';
 
 function App() {
+
+    const { state } = useContext(store);
+    const {notification} = state;
+
     const defaultOpts = { "Content-Type": "application/json" };
 
     const [education,errEducation] = useFirebase(
@@ -57,6 +40,7 @@ function App() {
     );
     const [repositories, errRepos] = useFirebase(`${baseUri}/api/githubRepos?username=dpalyov&numRepos=4`,defaultOpts);
     const [loading, setLoading] = useState(true);
+    
 
     useEffect(() => {
         setTimeout(() => setLoading(false), 1000);
@@ -74,18 +58,18 @@ function App() {
       return <div>Ooops something went wrong!</div>
     }
 
-
     return (
         <div className="App">
             <div id="page">
-                <Header pageLoaded={loading} />
-                <About />
-                <Resume exp={experience} education={education} />
-                <Services data={services} />
-                <Skills data={skills} />
-                <Portfolio data={repositories} />
-                <Contact  />
-                <Footer />
+                    <Header pageLoaded={loading} />
+                    <About />
+                    <Resume exp={experience} education={education} />
+                    <Services data={services} />
+                    <Skills data={skills} />
+                    <Portfolio data={repositories} />
+                    <Contact />
+                    <Footer />
+                    <Notification enabled={notification.enabled} text={notification.text} image={notification.image}/>
             </div>
         </div>
     );
