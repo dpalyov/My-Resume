@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/node": "^7.6.3",
+    "@firebase/app": "^0.6.8",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
@@ -25,7 +26,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "seed": "babel-node firebase.seed.js"
+    "seed": "babel-node firebase.seed.js",
+    "deploy": "firebase deploy",
+    "deploy-functions": "firebase deploy --only functions",
+    "emulate": "firebase emulators:start --inspect-functions"
   },
   "eslintConfig": {
     "extends": "react-app"

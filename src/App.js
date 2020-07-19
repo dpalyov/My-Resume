@@ -38,7 +38,9 @@ function App() {
         `${baseUri}/api/firebase/data/services?sortField=id&sortOrder=asc`,
         defaultOpts
     );
-    const [repositories, errRepos] = useFirebase(`${baseUri}/api/githubRepos?username=dpalyov&numRepos=4`,defaultOpts);
+    const [repositories, errRepos] = useFirebase(
+        `${baseUri}/api/firebase/data/repositories?sortOrder=asc`
+        ,defaultOpts);
     const [loading, setLoading] = useState(true);
     
 

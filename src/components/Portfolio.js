@@ -1,36 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import {Row, Col, Container} from 'react-bootstrap';
-import useInterceptionObserver from '../hooks/useInterceptionObserver';
 import styles from '../css/Portfolio.module.css';
 
 const Portfolio = ({data}) => {
-
-	// const [ref, entry] = useInterceptionObserver({
-	// 	threshold: [0],
-	// });
-
-	// const { isIntersecting } = entry;
-
-	// const portfolioClasses = () => {
-	// 	let classes = ['text-center col-padding animate-box'];
-
-	// 	if (isIntersecting) {
-	// 		classes = [...classes, 'fadeInLeft animated']
-	// 	}
-	// 	else{
-	// 		classes = [...classes, 'fadeOutRight animated']
-	// 	}
-
-	// 	return classes.join(' ');
-	// }
-
-	// const dataRef = useRef(data);
-
-	// useEffect(() => {
-	// 	dataRef.current = data.map((repo,i) => {
-	// 		return {...repo, img: images[i] }
-	// 	})
-	// },[data])
 
     return (
         <div id="fh5co-work" className="fh5co-bg-dark">
@@ -49,9 +21,9 @@ const Portfolio = ({data}) => {
 							<h3>{repo.name}</h3>
 						</div>
 						<div className={styles.flipCardBack}>
-							<span>{repo.shortDescriptionHTML.length > 80 ? repo.shortDescriptionHTML.substr(0,80) + "..." : repo.shortDescriptionHTML}</span>
+							<span>{repo.description.length > 80 ? repo.description.substr(0,80) + "..." : repo.description}</span>
 							<br/>
-							<span>{repo.languages.nodes.map(l => l.name).join('/')}</span>
+							<span>{repo.languages.join('/')}</span>
 						</div>
 						</a>
 					</div>

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import cover from '../assets/images/gif-cover.gif';
 import thumb from '../assets/images/thumb.jpg';
