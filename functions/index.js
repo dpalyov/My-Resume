@@ -10,7 +10,16 @@ require('dotenv').config();
 
 const server = express();
 
-server.use(cors({ origin: true}));
+const whitelist = ["https://online-cv-476e2.firebaseapp.com", "https://online-cv-476e2.web.app", "http://localhost:3000"]
+
+server.use(cors({ origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}));
 
 server.use(errorHandler);
 
