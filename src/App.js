@@ -13,7 +13,7 @@ import Notification from "./components/Notification";
 import { store } from "./store";
 
 
-const baseUri = 'https://us-central1-online-cv-476e2.cloudfunctions.net';
+const baseUri = 'http://localhost:3001';
 
 function App() {
 
@@ -23,22 +23,24 @@ function App() {
     const defaultOpts = { "Content-Type": "application/json" };
 
     const [education,errEducation] = useFirebase(
-        `${baseUri}/api/firebase/data/education?sortField=id&sortOrder=asc`,
+        `${baseUri}/api/data/education?sortField=id&sortOrder=asc`,
         defaultOpts
     );
     const [experience,errExp] = useFirebase(
-        `${baseUri}/api/firebase/data/experience?sortField=id&sortOrder=asc`,
+        `${baseUri}/api/data/experience?sortField=id&sortOrder=asc`,
         defaultOpts
     );
     const [skills,errSkills] = useFirebase(
-        `${baseUri}/api/firebase/data/skills?sortField=id&sortOrder=asc`,
+        `${baseUri}/api/data/skills?sortField=id&sortOrder=asc`,
         defaultOpts
     );
     const [services,errServices] = useFirebase(
-        `${baseUri}/api/firebase/data/services?sortField=id&sortOrder=asc`,
+        `${baseUri}/api/data/services?sortField=id&sortOrder=asc`,
         defaultOpts
     );
-    const [repositories, errRepos] = useFirebase(`${baseUri}/api/githubRepos?username=dpalyov&numRepos=4`,defaultOpts);
+    const [repositories, errRepos] = useFirebase(
+        `${baseUri}/api/data/repositories?sortOrder=asc`
+        ,defaultOpts);
     const [loading, setLoading] = useState(true);
     
 

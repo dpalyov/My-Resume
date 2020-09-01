@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Container, Row, Col, ListGroup, ListGroupItem, Image } from "react-bootstrap";
+import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../css/Footer.module.css";
 import NavLink from "react-bootstrap/NavLink";

@@ -2,11 +2,10 @@ import React from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import useInterceptionObserver from "../hooks/useInterceptionObserver";
 import { Doughnut } from "react-chartjs-2";
-import skillsImg from "../assets/images/skills.svg";
 
 const Skills = ({ data }) => {
     const [ref, entry] = useInterceptionObserver({
-        threshold: [0.3],
+        threshold: [0.1],
     });
 
     const { isIntersecting } = entry;
@@ -24,23 +23,9 @@ const Skills = ({ data }) => {
                     var txt = centerConfig.text;
                     var color = centerConfig.color || "#000";
                     var sidePadding = centerConfig.sidePadding || 20;
-                    // var sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
-                    //Start with a base font of 30px
+   
                     ctx.font = "30px " + fontStyle;
 
-                    //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
-                    // var stringWidth = ctx.measureText(txt).width;
-                    // var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
-
-                    // Find out how much the font can grow in width.
-                    // var widthRatio = elementWidth / stringWidth;
-                    // var newFontSize = Math.floor(30 * widthRatio);
-                    // var elementHeight = (chart.innerRadius * 2);
-
-                    // Pick a new font size so it will not be larger than the height of label.
-                    // var fontSizeToUse = Math.min(newFontSize, elementHeight);
-
-                    //Set font settings to draw it correctly.
                     ctx.textAlign = "center";
                     ctx.textBaseline = "middle";
                     var centerX =
@@ -116,21 +101,6 @@ const Skills = ({ data }) => {
                     </Col>
                 </Row>
                 <Row className="row-pb-md" style={{position:'relative'}}>
-                    <div
-                        className="skills-underlay"
-                        style={{
-                            position: "absolute",
-                            height: "500px",
-                            width: "100%",
-                            backgroundImage: `url(${skillsImg})`,
-                            backgroundRepeat: "no-repeat",
-                            backgroundSide: "cover",
-                            backgroundPosition: "center",
-                            opacity: 0.2,
-                        }}
-                    >
-                        &nbsp;
-                    </div>
                     {data.map((skill) => {
                         const { level, name, id } = skill;
                         const values = [level, 1 - level];
@@ -142,7 +112,6 @@ const Skills = ({ data }) => {
                                 xs="12"
                                 className="chart"
                             >
-                                {/* <div className="chart" data-percent={skill.level * 100}><span><strong>{skill.name}</strong>{skill.level * 100}%</span></div> */}
                                 <Doughnut
                                     plugins={chartPlugin}
                                     width={4}

@@ -1,0 +1,26 @@
+[
+    {
+        "description": "Small application that schedules mail distribution based on a time interval",
+        "languages": ["C#"],
+        "name": "Mail Dispatcher",
+        "url": "https://github.com/dpalyov/Mail-service-scheduler"
+    },
+    {
+        "languages": ["Typescript", "Javascript", "CSS", "HTML"],
+        "url": "https://github.com/dpalyov/Contact-list-manager",
+        "description": "Contact list manager - GUI + api leveraging Graphql and connecting via Lowdb adapter",
+        "name": "Contacts manager"
+    },
+    {
+        "url": "https://github.com/dpalyov/Email-Report-Generator",
+        "description": "Small app that takes sql as input and outputs a table embedded in an email body or sent as attachment",
+        "name": "Report generator",
+        "languages": ["C#"]
+    },
+    {
+        "name": "COVID-19 Dashboard",
+        "languages": ["Typescript", "CSS", "HTML"],
+        "url": "https://github.com/dpalyov/COVID-dash",
+        "description": "Visual clues informing on how the COVID-19 pandemic progresses on daily basis"
+    }
+]

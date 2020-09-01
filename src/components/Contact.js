@@ -10,8 +10,8 @@ import {
 import cover from "../assets/images/contact.svg";
 import useInterceptionObserver from "../hooks/useInterceptionObserver";
 import { store } from "../store";
-import messageSent  from '../assets/images/message_sent.svg';
-import error  from '../assets/images/error.svg';
+import messageSent from "../assets/images/message_sent.svg";
+import error from "../assets/images/error.svg";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -41,14 +41,11 @@ const Contact = () => {
         : "choose animate-box";
 
     const postMessage = useCallback(async () => {
+        const { sender, fname, lname } = isFormValid;
 
-        const {sender, fname, lname} = isFormValid;
-
-        if(sender && fname && lname){
-
-        try {
+        if (sender && fname && lname) {
             const response = await fetch(
-                "https://us-central1-online-cv-476e2.cloudfunctions.net/api/handleEmail",
+                `${process.env.REACT_APP_HOST}/api/handleEmail`,
                 {
                     method: "POST",
                     body: JSON.stringify(formData),
@@ -58,38 +55,39 @@ const Contact = () => {
                 }
             );
 
-            await response.json();
-            
+            if (response.ok) {
+                dispatch({
+                    type: "NOTIFICATION",
+                    payload: {
+                        enabled: true,
+                        text: "Message sent successfully!",
+                        image: messageSent,
+                    },
+                });
+            }
+            else {
+                dispatch({
+                    type: "NOTIFICATION",
+                    payload: {
+                        enabled: true,
+                        text: await response.text(),
+                        image: error,
+                    },
+                });
+            }
+
+           
+        } else {
             dispatch({
                 type: "NOTIFICATION",
                 payload: {
                     enabled: true,
-                    text: "Message sent successfully!",
-                    image: messageSent
-                },
-            });
-        } catch (error) {
-            dispatch({
-                type: "NOTIFICATION",
-                payload: {
-                    enabled: true,
-                    text: error.statusText,
-                    image: error
+                    text: "Form contains errors!",
+                    image: error,
                 },
             });
         }
-    }
-    else {
-        dispatch({
-            type: "NOTIFICATION",
-            payload: {
-                enabled: true,
-                text: "Form contains errors!",
-                image: error
-            },
-        })
-    }
-    }, [formData, dispatch,  isFormValid]);
+    }, [formData, dispatch, isFormValid]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;

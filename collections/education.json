@@ -1,0 +1,20 @@
+[
+    {
+        "dateStart": "25/09/2005",
+        "id": 1,
+        "type": "College/University",
+        "dateEnd": "23/06/2008",
+        "school": "Paul Valery university, Montpellier",
+        "fieldOfStudy": "Medias and Communications",
+        "degree": "Bachelor"
+    },
+    {
+        "dateEnd": "20/06/2005",
+        "type": "High school",
+        "school": "French school Frederic Joliot-Curie, Varna",
+        "degree": "French",
+        "fieldOfStudy": "Standard education (all subjects in French)",
+        "id": 2,
+        "dateStart": "15/09/2000"
+    }
+]
