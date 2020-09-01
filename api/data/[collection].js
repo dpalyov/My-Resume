@@ -1,10 +1,11 @@
 import path from 'path';
-import fs from 'fs/promises';
+import {default as fsWithCallbacks} from 'fs';
+import {logger} from "../../util/util";
+const fs = fsWithCallbacks.promises;
 
 
 export default async (req, res) => {
-    // let { sortField = "id", sortOrder = "asc" } = req.query;
-    const { collection } = req.params;
+    const { collection } = req.query;
     try{
         const docPath = path.resolve(__dirname, "collections", `${collection}.json`);
         const bytes = await fs.readFile(docPath);
@@ -13,6 +14,7 @@ export default async (req, res) => {
 
     }
     catch(ex) {
+        logger("error", ex.message, process.env.VERCEL_GITHUB_REPO);
         return res.status(500).send("Sorry, it appears that the service is unavailable");
     }
   

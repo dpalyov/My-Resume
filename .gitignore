@@ -27,3 +27,4 @@ firestore*
 *rules*
 .vscode
 functions/serviceKey.json
+.vercel

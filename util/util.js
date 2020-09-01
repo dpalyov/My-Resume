@@ -1,9 +1,14 @@
-const nodemailer = require('nodemailer');
+import { createTransport } from 'nodemailer';
+import {default as fsWithCallbacks} from 'fs'
+import path from 'path';
 
-const sendMail = (subject, sender, mail, fname, lname) => {
+const fs = fsWithCallbacks.promises;
+
+export const sendMail =  (subject, sender, mail, fname, lname) => {
     const email = process.env.USER;
     const password = process.env.PASS;
-    const transporter = nodemailer.createTransport({
+
+    const transporter = createTransport({
         host: "smtp.gmail.com",
         port: 587,
         secure: false,
@@ -24,12 +29,12 @@ const sendMail = (subject, sender, mail, fname, lname) => {
         text: `Sender names: ${fname} ${lname}\nSender email: ${sender}\nMessage:${mail}`,
     };
 
-    const getDeliveryStatus = (error, info) => {
+    const getDeliveryStatus = async (error, info) => {
         if (error) {
-            console.log(error);
+            await logger("error", error, "mailLog");
             return;
         }
-        console.log(`Message sent ${info.messageId}`);
+        await logger("info", info.messageId, "mailLog")
     };
 
     transporter.sendMail(mailOpts, getDeliveryStatus, (err, info) => {
@@ -38,6 +43,16 @@ const sendMail = (subject, sender, mail, fname, lname) => {
     });
 };
 
-module.exports = {
-    sendMail: sendMail,
+export async function logger(type, message, destination){
+
+    const tgtDir = path.resolve("logs");
+    try{
+        await fs.stat(tgtDir);
+    }
+    catch(error){
+        if(error.code === "ENOENT"){
+            fs.mkdir(tgtDir);
+        }
+    }
+    await fs.appendFile(path.resolve("logs",`${destination}.txt`), `[${type}] : ${message}\n`);
 }

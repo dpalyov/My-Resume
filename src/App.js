@@ -8,12 +8,10 @@ import loader from "./assets/images/loader.gif";
 import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import useFirebase from "./hooks/useApi";
+import useApi from "./hooks/useApi";
 import Notification from "./components/Notification";
 import { store } from "./store";
 
-
-const baseUri = 'http://localhost:3001';
 
 function App() {
 
@@ -22,24 +20,24 @@ function App() {
 
     const defaultOpts = { "Content-Type": "application/json" };
 
-    const [education,errEducation] = useFirebase(
-        `${baseUri}/api/data/education?sortField=id&sortOrder=asc`,
+    const [education,errEducation] = useApi(
+        `/api/data/education`,
         defaultOpts
     );
-    const [experience,errExp] = useFirebase(
-        `${baseUri}/api/data/experience?sortField=id&sortOrder=asc`,
+    const [experience,errExp] = useApi(
+        `/api/data/experience`,
         defaultOpts
     );
-    const [skills,errSkills] = useFirebase(
-        `${baseUri}/api/data/skills?sortField=id&sortOrder=asc`,
+    const [skills,errSkills] = useApi(
+        `/api/data/skills`,
         defaultOpts
     );
-    const [services,errServices] = useFirebase(
-        `${baseUri}/api/data/services?sortField=id&sortOrder=asc`,
+    const [services,errServices] = useApi(
+        `/api/data/services`,
         defaultOpts
     );
-    const [repositories, errRepos] = useFirebase(
-        `${baseUri}/api/data/repositories?sortOrder=asc`
+    const [repositories, errRepos] = useApi(
+        `/api/data/repositories`
         ,defaultOpts);
     const [loading, setLoading] = useState(true);
     

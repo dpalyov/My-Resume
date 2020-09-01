@@ -9,10 +9,10 @@ export default (initialUri = "", initialOpts = {}) => {
 
     useEffect(() => {
 
-        let didCancel = false;
+        const ac = new AbortController();
         const getData = async () => {
             
-            const res = await fetch(uri, opts);
+            const res = await fetch(uri, {...opts, signal: ac.signal});
 
             if(!res.ok){
                 setError({status: res.status, text: res.statusText});
@@ -22,13 +22,17 @@ export default (initialUri = "", initialOpts = {}) => {
             setData(docs);
         }
        
-        if(!didCancel && uri !== ""){
             getData();
-        }
 
-        return () => didCancel = true;
-    },[uri, opts])
+        return () => ac.abort();
 
-    return [data,error];
+    },[uri, opts]);
+
+    function refetch(uri, opts = {}) {
+        setUri(uri);
+        setOpts(opts);
+    }
+
+    return [data,error, refetch];
 
 }
