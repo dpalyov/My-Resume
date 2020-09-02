@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Container, Row, Col, ListGroup, ListGroupItem, Image } from "react-bootstrap";
+import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../css/Footer.module.css";
 import NavLink from "react-bootstrap/NavLink";
@@ -7,6 +7,14 @@ import svg from '../assets/images/content_struct.svg';
 import { faFacebook, faInstagram, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = (props) => {
+
+    // const handleSelection = (e) => {
+    //     e.preventDefault();
+    //     document.getElementById("fh5co-work").scrollIntoView({
+    //          behavior:"smooth",
+    //          block: "start"
+    //     });
+    // }
     return (
         <Fragment>
             <div className={styles.footer}>
@@ -36,7 +44,7 @@ const Footer = (props) => {
                                     </NavLink>
                                 </ListGroupItem>
                                 <ListGroupItem variant="primary">
-                                    <NavLink  href="#fh5co-work">
+                                    <NavLink  href="#fh5co-work" >
                                         My Projects
                                     </NavLink>
                                 </ListGroupItem>

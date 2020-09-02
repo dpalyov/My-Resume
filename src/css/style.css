@@ -316,6 +316,10 @@ figure {
     #fh5co-contact {
         padding: 3em 0;
     }
+
+    .chart {
+      padding: 0;
+    }
 }
 
 @media screen and (max-width: 990px) {

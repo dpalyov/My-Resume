@@ -49,7 +49,7 @@
   /* Style the back side */
   .flipCardBack {
     background-color: #ebd938;
-    color: white;
+    color: #394a6d;
     word-wrap: break-word;
     transform: rotateY(180deg);
     padding: 50px 20px;
