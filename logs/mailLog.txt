@@ -1,1 +1,8 @@
 [info] : <f4f9716e-1bcb-3814-e7a3-1d7a5f173b35@gmail.com>
+[info] : <b01310df-16a2-ef1c-4575-20e8d7e5b4ad@gmail.com>
+[2020-09-04T19:40:55.842Z][info] : HTTP 202 ,
+[2020-09-05T07:17:42.715Z][info] : HTTP 202 ,
+[2020-09-05T10:06:51.708Z][info] : HTTP 202 ,
+[2020-09-05T11:05:16.242Z][error] : [object Object]
+[2020-09-05T11:08:15.854Z][error] : {"request_id":"18d3f656-ef68-11ea-9990-f23c9216d828","data":{"succeeded":1,"failures":[],"email_id":"1kEW3M-IbZpED-8c","failed":0}}
+[2020-09-05T11:12:24.756Z][info] : {"data":{"email_id":"1kEW7N-wSEWgr-5l","failures":[],"failed":0,"succeeded":1},"request_id":"ad3c037e-ef68-11ea-96e2-f23c92160e3c"}

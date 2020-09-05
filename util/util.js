@@ -1,46 +1,51 @@
-import { createTransport } from 'nodemailer';
+// import { createTransport } from 'nodemailer';
 import {default as fsWithCallbacks} from 'fs'
 import path from 'path';
+import fetch from "node-fetch"
 
 const fs = fsWithCallbacks.promises;
 
-export const sendMail =  (subject, sender, mail, fname, lname) => {
-    const email = process.env.USER;
-    const password = process.env.PASS;
+export const sendMail =  async (subject, sender, mail, fname, lname) => {
 
-    const transporter = createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false,
-        requireTLS: true,
-        tls: {
-            rejectUnauthorized: false
-        },
-        auth: {
-            user: email,
-            pass: password,
-        },
-    });
+    const baseUrl = "https://api.smtp2go.com/v3/"
 
     const mailOpts = {
-        from: email,
-        to: "palyov.dimitar@gmail.com",
-        subject: subject,
-        text: `Sender names: ${fname} ${lname}\nSender email: ${sender}\nMessage:${mail}`,
-    };
+        "api_key": process.env.SMTP2GO_APIKEY,
+        "to": ["palyov.dimitar@gmail.com"],
+        "sender": "mail@dpalyov.com",
+        "subject": subject,
+        // "text_body": `Sender names: ${fname} ${lname}\nSender email: ${sender}\nMessage:${mail}`,
+        "html_body": `<h5>${mail}</h5>`,
+        "custom_headers": [
+          {
+            "header": "Reply-To",
+            "value": `${fname} ${lname} ${sender}`
+          }
+        ],
+        // "attachments": [
+        //     {
+        //         "filename": "test.pdf",
+        //         "fileblob": "--base64-data--",
+        //         "mimetype": "application/pdf"
+        //     },
+        //     {
+        //         "filename": "test.txt",
+        //         "fileblob": "--base64-data--",
+        //         "mimetype": "text/plain"
+        //     }
+        // ]
+    }
 
-    const getDeliveryStatus = async (error, info) => {
-        if (error) {
-            await logger("error", error, "mailLog");
-            return;
-        }
-        await logger("info", info.messageId, "mailLog")
-    };
 
-    transporter.sendMail(mailOpts, getDeliveryStatus, (err, info) => {
-        if (err) return err;
-        else return info;
-    });
+    const res = await fetch(baseUrl + "/email/send", {method: "POST", body: JSON.stringify(mailOpts)});
+    const json = await res.json();
+
+    if(json.data.failed){
+        await logger("error", JSON.stringify(json), "mailLog");
+    }
+    else {
+        await logger("info", JSON.stringify(json), "mailLog");
+    }
 };
 
 export async function logger(type, message, destination){
@@ -54,5 +59,5 @@ export async function logger(type, message, destination){
             fs.mkdir(tgtDir);
         }
     }
-    await fs.appendFile(path.resolve("logs",`${destination}.txt`), `[${type}] : ${message}\n`);
+    await fs.appendFile(path.resolve("logs",`${destination}.txt`), `[${new Date(Date.now()).toISOString()}][${type}] : ${message}\n`);
 }
