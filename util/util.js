@@ -49,7 +49,6 @@ export const sendMail =  async (subject, sender, mail, fname, lname) => {
 };
 
 export async function logger(type, message, destination){
-    b9999
 
     const tgtDir = path.resolve("logs");
     try{

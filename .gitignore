@@ -28,4 +28,4 @@ firestore*
 .vscode
 functions/serviceKey.json
 .vercel
-/logs
+logs
