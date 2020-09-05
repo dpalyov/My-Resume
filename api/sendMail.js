@@ -7,7 +7,6 @@ export default function(req, res) {
         res.send(JSON.stringify(req.body));
     }
     catch(ex){
-        console.log(ex);
         res.send(500).send("Failed to send your message");
     }
    
