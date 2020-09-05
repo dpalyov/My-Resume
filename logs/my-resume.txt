@@ -1,5 +1,0 @@
-[error] : ENOENT: no such file or directory, open 'C:\Users\snix\source\repos\my-resume\api\data\collections\serve.json'
-[error] : ENOENT: no such file or directory, open 'C:\Users\snix\source\repos\my-resume\api\data\collections\serve.json'
-[error] : ENOENT: no such file or directory, open 'C:\Users\snix\source\repos\my-resume\api\data\collections\serve.json'
-[error] : ENOENT: no such file or directory, open 'C:\Users\snix\source\repos\my-resume\api\data\collections\serve.json'
-[error] : ENOENT: no such file or directory, open 'C:\Users\snix\source\repos\my-resume\api\data\collections\serve.json'
