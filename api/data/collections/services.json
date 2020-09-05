@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "icon": "laptop-code",
+        "content": "ASP.NET / Node.js web applications",
+        "name": "Web development"
+    },
+    {
+        "name": "Automation",
+        "icon": "robot",
+        "content": "Automating the boring stuff",
+        "id": 2
+    },
+    {
+        "content": "Because sometimes visuals speak louder",
+        "name": "Data visualization and analysis",
+        "icon": "chart-pie",
+        "id": 3
+    }
+]

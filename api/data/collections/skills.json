@@ -1,0 +1,12 @@
+[
+    { "id": 1, "name": "React", "level": 0.85 },
+    { "level": 0.75, "name": "Node", "id": 2 },
+    { "level": 0.9, "name": "HTML5", "id": 3 },
+    { "id": 4, "level": 0.85, "name": "CSS3" },
+    { "level": 0.8, "name": "ASP.NET", "id": 5 },
+    { "level": 0.95, "name": "SQL", "id": 6 },
+    { "name": "Python", "id": 7, "level": 0.5 },
+    { "name": "ML", "level": 0.5, "id": 8 },
+    { "level": 0.6, "id": 9, "name": "Firebase" },
+    { "id": 10, "name": "JQuery", "level": 0.65 }
+]

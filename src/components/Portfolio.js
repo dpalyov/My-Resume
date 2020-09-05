@@ -21,7 +21,7 @@ const Portfolio = ({data}) => {
 							<h3>{repo.name}</h3>
 						</div>
 						<div className={styles.flipCardBack}>
-							<span>{repo.description.length > 80 ? repo.description.substr(0,80) + "..." : repo.description}</span>
+							<span title={repo.description}>{repo.description.length > 80 ? repo.description.substr(0,80) + "..." : repo.description}</span>
 							<br/>
 							<span>{repo.languages.join('/')}</span>
 						</div>

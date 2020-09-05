@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Visteon",
+        "id": 0,
+        "logoImg": "https://firebasestorage.googleapis.com/v0/b/online-cv-476e2.appspot.com/o/vistLogo.jpg?alt=media&token=0bb5e5ee-b08a-43b9-8484-a3874ade3ad5",
+        "role": "Full-stack web developer",
+        "technologies": "React, Redux, JQuery, ASP.NET Core, Node.js, GraphQL, SQL Server",
+        "startDate": "06/08/2018",
+        "endDate": null,
+        "locationImg": "https://firebasestorage.googleapis.com/v0/b/online-cv-476e2.appspot.com/o/vistLocation.9f5df6ca.png?alt=media&token=a59635b1-2265-45dc-bae0-b88fbccb8603",
+        "content": "Part of the Continuous improvement team (sub-team of the Quality group). Participating in key projects aiming to improve auditing of company processes."
+    },
+    {
+        "role": "Business analyst & tools developer",
+        "locationImg": "https://firebasestorage.googleapis.com/v0/b/online-cv-476e2.appspot.com/o/hpLocation.e226bf72.jpg?alt=media&token=31db86aa-63b7-4fca-8d77-e66efdc74f22",
+        "technologies": "React, SQL Server, VBA, ETL, Entity Framework",
+        "endDate": "01/08/2018",
+        "startDate": "01/01/2017",
+        "logoImg": "https://firebasestorage.googleapis.com/v0/b/online-cv-476e2.appspot.com/o/hpLogo.cbb1d34e.png?alt=media&token=5d7a8778-d2ab-436d-a83b-0377d214c0d1",
+        "id": 1,
+        "name": "HP Inc",
+        "content": "Part of the \"Service excellence, transformation and innovation\" team (sub-team of the CRT). Participating in projects aiming to reduce cost and raise team efficiency by building a robust, automated reporting system. Creating UIs and Back-end infrastructures."
+    },
+    {
+        "id": 2,
+        "logoImg": "https://firebasestorage.googleapis.com/v0/b/online-cv-476e2.appspot.com/o/hpLogo.cbb1d34e.png?alt=media&token=5d7a8778-d2ab-436d-a83b-0377d214c0d1",
+        "endDate": "01/01/2017",
+        "locationImg": "https://firebasestorage.googleapis.com/v0/b/online-cv-476e2.appspot.com/o/hpEnterpiseLocation.7b66e0de.jpg?alt=media&token=6d7ac995-4862-43e4-8464-a4d6bdd6e0b1",
+        "content": "Part of the \"Deal Support Office\" (sub-team of Managed-Printing-Services). Delivery of quality customized reports, database maintenance, monitoring of printing activities.",
+        "startDate": "01/09/2015",
+        "name": "HP Inc",
+        "role": "Reporting Analyst",
+        "technologies": "Excel, VBA"
+    },
+    {
+        "id": 3,
+        "content": "Part of the Fleet Ops Team. Maintaining inventory sheets and printing monitoring",
+        "technologies": "Excel",
+        "startDate": "12/07/2010",
+        "name": "HP Inc",
+        "role": "Fleet Ops Specialist",
+        "logoImg": "https://firebasestorage.googleapis.com/v0/b/online-cv-476e2.appspot.com/o/hpLogo.cbb1d34e.png?alt=media&token=5d7a8778-d2ab-436d-a83b-0377d214c0d1",
+        "locationImg": "https://firebasestorage.googleapis.com/v0/b/online-cv-476e2.appspot.com/o/hpEnterpiseLocation.7b66e0de.jpg?alt=media&token=6d7ac995-4862-43e4-8464-a4d6bdd6e0b1",
+        "endDate": "01/09/2015"
+    },
+    {
+        "content": "Part of the French support team.Troubleshooting printers and copy devices",
+        "logoImg": "https://firebasestorage.googleapis.com/v0/b/online-cv-476e2.appspot.com/o/ibm_logo.png?alt=media&token=937e2194-0657-4b3c-a4e3-4ef3bc44dd55",
+        "id": 4,
+        "role": "Customer Service Representative",
+        "locationImg": "https://firebasestorage.googleapis.com/v0/b/online-cv-476e2.appspot.com/o/ibmLocation.jpg?alt=media&token=843355fe-4893-428e-95f9-5623a62ba9a5",
+        "startDate": "10/08/2008",
+        "name": "IBM",
+        "endDate": "01/07/2010"
+    }
+]

@@ -3,36 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/node": "^7.6.3",
-    "@firebase/app": "^0.6.8",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.7",
+    "@sendgrid/mail": "^7.2.5",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.9.1",
-    "firebase": "^7.2.1",
-    "firebase-admin": "^8.7.0",
-    "firebase-functions": "^3.3.0",
-    "node-sass": "^4.13.1",
+    "node-fetch": "^2.6.0",
+    "nodemailer": "^6.4.11",
     "react": "^16.10.2",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-chartjs-2": "^2.8.0",
     "react-dom": "^16.10.2",
-    "react-scripts": "^3.3.1"
+    "react-scripts": "^3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "seed": "babel-node firebase.seed.js",
-    "deploy": "firebase deploy",
-    "deploy-functions": "firebase deploy --only functions",
-    "emulate": "firebase emulators:start --inspect-functions"
+    "dev": "start --port $PORT"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint-config-react-app": "^5.0.2"
   },
   "browserslist": {
     "production": [
@@ -45,10 +44,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "eslint-config-react-app": "^5.0.2"
   }
 }
