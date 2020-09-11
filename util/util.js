@@ -1,63 +1,52 @@
 // import { createTransport } from 'nodemailer';
-import {default as fsWithCallbacks} from 'fs'
-import path from 'path';
-import fetch from "node-fetch"
+import { default as fsWithCallbacks } from "fs";
+import path from "path";
+import mandrill from "mandrill-api";
 
 const fs = fsWithCallbacks.promises;
+const mandrillClient = new mandrill.Mandrill(process.env.SEND_GRID_APIKEY);
 
-export const sendMail =  async (subject, sender, mail, fname, lname) => {
-
-    const baseUrl = "https://api.smtp2go.com/v3/"
-
-    const mailOpts = {
-        "api_key": process.env.SMTP2GO_APIKEY,
-        "to": ["palyov.dimitar@gmail.com"],
-        "sender": "mail@dpalyov.com",
-        "subject": subject,
-        // "text_body": `Sender names: ${fname} ${lname}\nSender email: ${sender}\nMessage:${mail}`,
-        "html_body": `<h5>${mail}</h5>`,
-        "custom_headers": [
-          {
-            "header": "Reply-To",
-            "value": `${fname} ${lname} ${sender}`
-          }
+export const sendMail = async (subject, sender, mail, fname, lname) => {
+    const msg = {
+        html: `<strong>${mail}</strong>`,
+        text: "Example text content",
+        subject: subject,
+        from_email: "mail@dpalyov.com",
+        from_name: `${fname} ${lname}`,
+        to: [
+            {
+                email: "mail@dpalyov.com",
+                name: "Dimitar Palyov",
+                type: "to",
+            },
         ],
-        // "attachments": [
-        //     {
-        //         "filename": "test.pdf",
-        //         "fileblob": "--base64-data--",
-        //         "mimetype": "application/pdf"
-        //     },
-        //     {
-        //         "filename": "test.txt",
-        //         "fileblob": "--base64-data--",
-        //         "mimetype": "text/plain"
-        //     }
-        // ]
-    }
+        headers: {
+            "Reply-To": sender,
+        },
+    };
 
-
-    const res = await fetch(baseUrl + "/email/send", {method: "POST", body: JSON.stringify(mailOpts)});
-    const json = await res.json();
-
-    if(json.data.failed){
-        await logger("error", JSON.stringify(json), "mailLog");
-    }
-    else {
-        await logger("info", JSON.stringify(json), "mailLog");
-    }
+    mandrillClient.messages.send(
+        {"message": msg, "async": true, "ip_pool": "Main Pool"},
+        async (res) => {
+            await logger("info", JSON.stringify(res), "mailLog");
+        },
+        async (err) => {
+            await logger("error", JSON.stringify(err), "mailLog");
+        }
+    );
 };
 
-export async function logger(type, message, destination){
-
+export async function logger(type, message, destination) {
     const tgtDir = path.resolve("logs");
-    try{
+    try {
         await fs.stat(tgtDir);
-    }
-    catch(error){
-        if(error.code === "ENOENT"){
+    } catch (error) {
+        if (error.code === "ENOENT") {
             fs.mkdir(tgtDir);
         }
     }
-    await fs.appendFile(path.resolve("logs",`${destination}.txt`), `[${new Date(Date.now()).toISOString()}][${type}] : ${message}\n`);
+    await fs.appendFile(
+        path.resolve("logs", `${destination}.txt`),
+        `[${new Date(Date.now()).toISOString()}][${type}] : ${message}\n`
+    );
 }

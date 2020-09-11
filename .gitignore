@@ -29,3 +29,4 @@ firestore*
 functions/serviceKey.json
 .vercel
 logs
+package-lock.json
